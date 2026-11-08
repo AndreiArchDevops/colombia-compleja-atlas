@@ -1,0 +1,8 @@
+---
+const { chapter } = Astro.props;
+---
+<div class="depth-panel card" data-selected="inicial">
+  <div class="filters" role="group" aria-label="Profundidad de lectura"><button class="depth-button" data-set-depth="inicial" aria-pressed="true">Inicial</button><button class="depth-button" data-set-depth="intermedio" aria-pressed="false">Intermedio</button><button class="depth-button" data-set-depth="avanzado" aria-pressed="false">Avanzado</button></div>
+  <div data-depth="inicial"><h3>Lectura inicial</h3><p>{chapter.initial}</p></div><div data-depth="intermedio"><h3>Lectura intermedia</h3><p>{chapter.intermediate}</p></div><div data-depth="avanzado"><h3>Lectura avanzada</h3><p>{chapter.advanced}</p></div>
+</div>
+<script>document.querySelectorAll<HTMLElement>('.depth-panel').forEach(panel=>panel.querySelectorAll<HTMLButtonElement>('[data-set-depth]').forEach(button=>button.addEventListener('click',()=>{const depth=button.dataset.setDepth||'inicial';panel.dataset.selected=depth;panel.querySelectorAll<HTMLButtonElement>('[data-set-depth]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));localStorage.setItem('cc-depth',depth)})));const saved=localStorage.getItem('cc-depth');if(saved)document.querySelectorAll<HTMLButtonElement>(`[data-set-depth="${saved}"]`).forEach(b=>b.click());</script>

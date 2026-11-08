@@ -1,0 +1,4 @@
+---
+import Base from '../layouts/Base.astro'; import { sources } from '../data/book';
+---
+<Base title="Biblioteca · Colombia compleja"><section class="chapter-hero"><div class="wrap"><p class="eyebrow">Fuentes y lecturas</p><h1>Biblioteca trazable</h1><p class="lede">Registros con autoría, entidad responsable, fecha y última consulta.</p></div></section><section class="section"><div class="wrap"><ul class="source-list">{sources.map(s=><li><span class="pill">{s.kind}</span><h3><a href={s.url} rel="external">{s.title}</a></h3><p>{s.author}. {s.publisher}{s.published?`, ${s.published}`:''}. Consulta: {s.accessed}.</p>{s.notes&&<p><small>{s.notes}</small></p>}</li>)}</ul></div></section></Base>

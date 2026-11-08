@@ -1,0 +1,22 @@
+{
+  "name": "colombia-compleja-atlas",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "npm run validate:data && astro check && astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "validate:data": "tsx scripts/validate-data.ts"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.6.0",
+    "astro": "^7.4.7"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.5",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}

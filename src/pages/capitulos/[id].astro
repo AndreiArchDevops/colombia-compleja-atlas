@@ -1,0 +1,22 @@
+---
+import Base from '../../layouts/Base.astro';
+import DepthSelector from '../../components/DepthSelector.astro';
+import ReaderTools from '../../components/ReaderTools.astro';
+import { chapters, passages, claims } from '../../data/book';
+export function getStaticPaths(){
+  return chapters.map(chapter => ({ params: { id: chapter.id }, props: { chapter } }));
+}
+const { chapter } = Astro.props;
+const chapterPassages = passages.filter(p => p.chapterId === chapter.id);
+const chapterClaims = claims.filter(c => c.chapterId === chapter.id);
+---
+<Base title={`${chapter.title} · Colombia compleja`}>
+  <section class="chapter-hero"><div class="wrap"><p class="eyebrow">Capítulo {chapter.number} · pp. {chapter.printedStart}–{chapter.printedEnd}</p><h1>{chapter.title}</h1><p class="lede">{chapter.question}</p><span class="status">Revisión {chapter.review}</span></div></section>
+  <section class="section"><div class="wrap chapter-layout"><article>
+    <h2>Tesis reconstruida</h2><p class="lede">{chapter.thesis}</p><p class="notice"><strong>Voz editorial:</strong> esta formulación es una síntesis del atlas, no una cita del autor.</p>
+    <DepthSelector chapter={chapter}/><h2 style="margin-top:3rem">Conceptos fundamentales</h2><div class="tag-list">{chapter.concepts.map(x => <span class="pill">{x}</span>)}</div>
+    <h2 style="margin-top:3rem">Preguntas de lectura y debate</h2><ol>{chapter.questions.map(x => <li>{x}</li>)}</ol>
+    {chapterPassages.length > 0 && <section><h2 style="margin-top:3rem">Pasajes vinculados</h2>{chapterPassages.map(p => <div class="card"><blockquote class="quote">{p.quote}</blockquote><p><strong>Contexto:</strong> {p.context}</p><p><strong>Importancia:</strong> {p.significance}</p><span class="pill">Edición 2014 · p. {p.page}</span></div>)}</section>}
+    {chapterClaims.length > 0 && <section><h2 style="margin-top:3rem">Afirmaciones bajo contraste</h2>{chapterClaims.map(c => <div class="card claim" data-status={c.status}><span class="status">{c.status}</span><h3>{c.statement}</h3><p>{c.assessment}</p><small>Confianza {c.confidence} · revisión {c.reviewed}</small></div>)}</section>}
+  </article><ReaderTools id={chapter.id}/></div></section>
+</Base>

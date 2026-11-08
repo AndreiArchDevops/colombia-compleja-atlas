@@ -1,0 +1,25 @@
+name: Corrección documental
+description: Reporta un dato, cita, página o fuente que deba revisarse.
+title: "[Corrección]: "
+labels: [documentación]
+body:
+  - type: textarea
+    id: registro
+    attributes:
+      label: Registro o página del atlas
+      description: Indica la URL o el identificador afectado.
+    validations:
+      required: true
+  - type: textarea
+    id: problema
+    attributes:
+      label: Qué debe corregirse
+    validations:
+      required: true
+  - type: textarea
+    id: evidencia
+    attributes:
+      label: Fuente y localización
+      description: Incluye URL, autor, fecha y página cuando sea posible.
+    validations:
+      required: true

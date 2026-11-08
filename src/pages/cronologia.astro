@@ -1,0 +1,4 @@
+---
+import Base from '../layouts/Base.astro'; import { events, sources } from '../data/book';
+---
+<Base title="Cronología · Colombia compleja"><section class="chapter-hero"><div class="wrap"><p class="eyebrow">Tiempo y contexto</p><h1>Cronología documentada</h1><p class="lede">Hitos del autor, la obra y la institucionalidad ambiental. Esta versión inicial no pretende aún ser una cronología general de Colombia.</p></div></section><section class="section"><div class="wrap prose"><div class="timeline">{events.map(e=><article class="event"><strong>{e.year} · {e.title}</strong><p>{e.description}</p><div class="tag-list"><span class="pill">{e.category}</span>{e.sourceIds.map(id=>{const s=sources.find(x=>x.id===id);return <a class="pill" href={s?.url}>fuente</a>})}</div></article>)}</div></div></section></Base>
