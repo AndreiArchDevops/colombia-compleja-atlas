@@ -2,9 +2,9 @@
 
 MVP estático y accesible para estudiar *Colombia compleja* (Julio Carrizosa Umaña, 2014) en tres niveles, con trazabilidad editorial y contraste de fuentes.
 
-## Estado
+## Fase 2
 
-La ficha bibliográfica, la arquitectura de los ocho capítulos, el perfil inicial del autor, tres pasajes breves, cuatro fichas de contraste, cronología, glosario y laboratorio son funcionales. Los análisis están marcados como preliminares cuando aún requieren revisión exhaustiva. El sitio no aloja ni redistribuye el PDF.
+La segunda fase incorpora tres rutas de estudio, resúmenes en varias profundidades, módulos pedagógicos para los ocho capítulos, breadcrumbs, navegación anterior/siguiente, tabla lateral, progreso local, marcadores, notas exportables, biblioteca auditada y un atlas visual inicial. El sitio no aloja ni redistribuye el PDF.
 
 ## Desarrollo
 
@@ -17,17 +17,28 @@ Validación y compilación:
 
 ```bash
 npm run build
+npm run check:links
 ```
 
-La compilación ejecuta el validador de referencias, `astro check` y el build estático. La salida queda en `dist/`.
+La compilación ejecuta el validador de referencias, `astro check` y el build estático. Para reproducir exactamente el basepath de GitHub Pages:
+
+```bash
+GITHUB_ACTIONS=true GITHUB_REPOSITORY=AndreiArchDevops/colombia-compleja-atlas npm run build
+```
 
 ## GitHub Pages
 
-El workflow detecta el nombre del repositorio y configura automáticamente el `base` de Astro. En GitHub, configura **Settings → Pages → Source: GitHub Actions**. No se necesitan claves.
+El workflow detecta el nombre del repositorio y configura automáticamente el `base` de Astro. Los pull requests compilan y comprueban enlaces, pero solo un push autorizado a `main` puede ejecutar el job de despliegue. En GitHub, configura **Settings → Pages → Source: GitHub Actions**.
 
-## Modelo editorial
+## Investigación y trazabilidad
 
-Los tipos están en `src/data/types.ts` y los registros iniciales en `src/data/book.ts`. Cada afirmación enlaza capítulo, página, estado, evaluación, confianza, fuentes y fecha de revisión. El validador rechaza identificadores rotos y respuestas inválidas.
+Los tipos están en `src/data/types.ts`; el corpus editorial en `src/data/book.ts` y `src/data/learning.ts`; la auditoría web en `src/data/linkAudit.ts`. Los informes legibles están en `reports/`. Cada afirmación enlaza capítulo, página, estado, evaluación, confianza, fuentes y fecha de revisión.
+
+Las URL del libro fueron extraídas del PDF local. Un 403, 429, 503 o timeout se registra como bloqueado/no comprobable, nunca automáticamente como roto. Las imágenes se registran en `src/data/media.ts` con autor, fuente y licencia.
+
+## Privacidad
+
+Progreso, marcadores y notas usan `localStorage`; no se transmiten a un servidor. La exportación genera un archivo Markdown en el navegador. No se incorporan claves ni asistentes de IA en el sitio estático.
 
 ## Fuente primaria
 
