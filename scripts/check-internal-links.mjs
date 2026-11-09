@@ -1,0 +1,5 @@
+import fs from 'node:fs'; import path from 'node:path';
+const root=path.resolve('dist'); const base='/colombia-compleja-atlas/'; const errors=[];
+function walk(dir){for(const name of fs.readdirSync(dir)){const file=path.join(dir,name);const stat=fs.statSync(file);if(stat.isDirectory())walk(file);else if(name.endsWith('.html'))check(file)}}
+function check(file){const html=fs.readFileSync(file,'utf8');for(const match of html.matchAll(/(?:href|src|data)="([^"]+)"/g)){const raw=match[1];if(/^(https?:|ftp:|mailto:|data:|#)/.test(raw))continue;const clean=raw.split('#')[0].split('?')[0];if(!clean)continue;let relative=clean.startsWith(base)?clean.slice(base.length):clean.replace(/^\//,'');let target=path.join(root,relative);if(relative.endsWith('/')||!path.extname(relative))target=path.join(target,'index.html');if(!fs.existsSync(target))errors.push(`${path.relative(root,file)} -> ${raw}`)}}
+walk(root);if(errors.length){console.error(errors.join('\n'));process.exit(1)}console.log('Enlaces internos y assets del build: válidos.');
