@@ -18,5 +18,12 @@
 .media-strip figcaption { padding: 1rem; }
 .recall-card summary { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; cursor: pointer; }
 .recall-card[open] { border-color: var(--moss); }
+.table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--card); }
+.table-scroll:focus-visible { outline: 3px solid var(--ochre); outline-offset: 3px; }
+.table-scroll table { width: 100%; min-width: 860px; border-collapse: collapse; }
+.table-scroll th, .table-scroll td { padding: .85rem 1rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.table-scroll thead th { position: sticky; top: 0; background: var(--forest); color: white; font-family: var(--sans); }
+.table-scroll tbody th { color: var(--forest); font-family: var(--serif); }
+.table-scroll tbody tr:last-child > * { border-bottom: 0; }
 @media (max-width: 900px) { .media-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .vocabulary-grid, .media-grid, .media-strip { grid-template-columns: 1fr; } }
