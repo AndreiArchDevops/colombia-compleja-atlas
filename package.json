@@ -8,7 +8,8 @@
     "build": "npm run validate:data && astro check && astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "validate:data": "tsx scripts/validate-data.ts"
+    "check:links": "node scripts/check-internal-links.mjs",
+    "validate:data": "node --experimental-strip-types scripts/validate-data.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",
@@ -16,7 +17,6 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.5",
-    "tsx": "^4.20.6",
     "typescript": "^5.9.3"
   }
 }
