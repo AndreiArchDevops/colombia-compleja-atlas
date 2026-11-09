@@ -1,0 +1,22 @@
+.deep-reading > p { max-width: 78ch; }
+.deep-sections { display: grid; gap: 1rem; }
+.deep-sections .card { border-left: 4px solid var(--moss); }
+.deep-sections h4 { margin-bottom: .2rem; }
+.vocabulary-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 0; }
+.vocabulary-grid dt { font: 700 1.25rem var(--serif); color: var(--forest); }
+.vocabulary-grid dd { margin: .45rem 0 0; }
+.passage-card { margin-bottom: 1rem; }
+.passage-card blockquote { margin: 1rem 0; }
+.media-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.media-card { display: flex; flex-direction: column; }
+.media-card figure { margin: -1.3rem -1.3rem 1rem; }
+.media-card img, .media-strip img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 6px 6px 0 0; }
+.media-card figcaption { padding: .7rem 1.3rem 0; color: var(--muted); font-size: .9rem; }
+.media-placeholder { min-height: 12rem; margin: -1.3rem -1.3rem 1rem; display: grid; place-items: center; background: linear-gradient(135deg,#e8e2d4,#f8f4eb); color: var(--muted); font-weight: 700; }
+.media-strip { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+.media-strip figure { margin: 0; padding: 0; overflow: hidden; }
+.media-strip figcaption { padding: 1rem; }
+.recall-card summary { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; cursor: pointer; }
+.recall-card[open] { border-color: var(--moss); }
+@media (max-width: 900px) { .media-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .vocabulary-grid, .media-grid, .media-strip { grid-template-columns: 1fr; } }

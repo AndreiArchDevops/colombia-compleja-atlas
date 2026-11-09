@@ -1,6 +1,8 @@
 import { chapters, claims, concepts, passages, quizzes, sources } from '../src/data/book.ts';
 import { linkAudit } from '../src/data/linkAudit.ts';
 import { media } from '../src/data/media.ts';
+import { deepChapters } from '../src/data/deepResearch.ts';
+import { existsSync } from 'node:fs';
 
 const errors: string[] = [];
 const unique = <T>(items: T[], label: string) => {
@@ -17,5 +19,11 @@ for (const x of concepts) for (const id of x.chapterIds) if (!chapterIds.has(id)
 for (const x of quizzes) if (x.answer < 0 || x.answer >= x.options.length) errors.push(`${x.id}: respuesta fuera de rango`);
 for (const x of linkAudit) if (x.pdfPage < x.printedPage) errors.push(`${x.id}: página PDF inválida`);
 for (const x of media) if (x.localPath && (!x.author || !x.license || !x.alt)) errors.push(`${x.id}: metadatos de imagen incompletos`);
+for (const x of media) if (x.localPath && !existsSync(`public${x.localPath}`)) errors.push(`${x.id}: archivo de imagen inexistente ${x.localPath}`);
+for (const [id, deep] of Object.entries(deepChapters)) {
+  if (!chapterIds.has(id)) errors.push(`Investigación profunda: capítulo inexistente ${id}`);
+  if (!deep || deep.sections.length < 3 || deep.vocabulary.length < 3 || deep.retrieval.length < 3) errors.push(`${id}: investigación profunda incompleta`);
+  for (const mediaId of deep?.mediaIds ?? []) if (!media.some(x=>x.id===mediaId)) errors.push(`${id}: medio inexistente ${mediaId}`);
+}
 if (errors.length) { console.error(errors.join('\n')); process.exit(1); }
-console.log(`Datos válidos: ${chapters.length} capítulos, ${claims.length} verificaciones, ${sources.length} fuentes, ${passages.length} pasajes, ${linkAudit.length} enlaces auditados.`);
+console.log(`Datos válidos: ${chapters.length} capítulos, ${Object.keys(deepChapters).length} lecturas profundas, ${claims.length} verificaciones, ${sources.length} fuentes, ${passages.length} pasajes, ${media.length} medios y ${linkAudit.length} enlaces auditados.`);

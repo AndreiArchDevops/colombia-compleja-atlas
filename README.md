@@ -6,6 +6,10 @@ MVP estático y accesible para estudiar *Colombia compleja* (Julio Carrizosa Uma
 
 La segunda fase incorpora tres rutas de estudio, resúmenes en varias profundidades, módulos pedagógicos para los ocho capítulos, breadcrumbs, navegación anterior/siguiente, tabla lateral, progreso local, marcadores, notas exportables, biblioteca auditada y un atlas visual inicial. El sitio no aloja ni redistribuye el PDF.
 
+## Fase 3 — primera entrega
+
+La rama `feature/fase-3-investigacion-profunda` añade una lectura directa y documentada de los capítulos 1–3: estructura real por páginas, explicaciones extensas, ejemplos, vocabulario, supuestos, límites, conclusiones y recuperación activa. También incorpora una biblioteca visual inicial de cuatro fotografías con licencia abierta, derivados WebP, créditos completos y textos alternativos. El alcance y los pendientes están documentados en [`reports/fase-3-entrega-1.md`](reports/fase-3-entrega-1.md).
+
 ## Desarrollo
 
 ```bash

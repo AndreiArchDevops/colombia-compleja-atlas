@@ -13,7 +13,7 @@ export interface Chapter {
 }
 export interface Passage {
   id: string; chapterId: string; page: number; quote: string; context: string; significance: string;
-  emotion: string[]; sourceId: string;
+  emotion: string[]; sourceId: string; paraphrase?: string; connections?: string[];
 }
 export interface Claim {
   id: string; chapterId: string; page: number; statement: string; status: ClaimStatus;
