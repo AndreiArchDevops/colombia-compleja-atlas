@@ -2,6 +2,7 @@ import { chapters, claims, concepts, passages, quizzes, sources } from '../src/d
 import { linkAudit } from '../src/data/linkAudit.ts';
 import { media } from '../src/data/media.ts';
 import { deepChapters } from '../src/data/deepResearch.ts';
+import { appendices } from '../src/data/learning.ts';
 import { existsSync } from 'node:fs';
 
 const errors: string[] = [];
@@ -11,7 +12,8 @@ const unique = <T>(items: T[], label: string) => {
 };
 unique(chapters.map(x=>x.id), 'capítulo'); unique(sources.map(x=>x.id), 'fuente');
 unique(claims.map(x=>x.id), 'afirmación'); unique(passages.map(x=>x.id), 'pasaje');
-const chapterIds = new Set(chapters.map(x=>x.id)); const sourceIds = new Set(sources.map(x=>x.id));
+const chapterIds = new Set(chapters.map(x=>x.id)); const appendixIds = new Set(appendices.map(x=>x.id));
+const deepReadingIds = new Set([...chapterIds, ...appendixIds]); const sourceIds = new Set(sources.map(x=>x.id));
 for (const x of [...claims, ...passages, ...quizzes]) if (!chapterIds.has(x.chapterId)) errors.push(`Referencia a capítulo inexistente: ${x.chapterId}`);
 for (const x of claims) for (const id of x.sourceIds) if (!sourceIds.has(id)) errors.push(`${x.id}: fuente inexistente ${id}`);
 for (const x of passages) if (!sourceIds.has(x.sourceId)) errors.push(`${x.id}: fuente inexistente ${x.sourceId}`);
@@ -21,7 +23,7 @@ for (const x of linkAudit) if (x.pdfPage < x.printedPage) errors.push(`${x.id}: 
 for (const x of media) if (x.localPath && (!x.author || !x.license || !x.alt)) errors.push(`${x.id}: metadatos de imagen incompletos`);
 for (const x of media) if (x.localPath && !existsSync(`public${x.localPath}`)) errors.push(`${x.id}: archivo de imagen inexistente ${x.localPath}`);
 for (const [id, deep] of Object.entries(deepChapters)) {
-  if (!chapterIds.has(id)) errors.push(`Investigación profunda: capítulo inexistente ${id}`);
+  if (!deepReadingIds.has(id)) errors.push(`Investigación profunda: capítulo o apéndice inexistente ${id}`);
   if (!deep || deep.sections.length < 3 || deep.vocabulary.length < 3 || deep.retrieval.length < 3) errors.push(`${id}: investigación profunda incompleta`);
   for (const mediaId of deep?.mediaIds ?? []) if (!media.some(x=>x.id===mediaId)) errors.push(`${id}: medio inexistente ${mediaId}`);
 }
