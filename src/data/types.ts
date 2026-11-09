@@ -1,5 +1,6 @@
 export type Depth = 'inicial' | 'intermedio' | 'avanzado';
 export type ClaimStatus = 'confirmada' | 'parcial' | 'controvertida' | 'refutada' | 'no-verificable' | 'interpretacion';
+export type ClaimKind = 'dato-historico' | 'dato-cientifico' | 'interpretacion' | 'hipotesis-causal' | 'valoracion-normativa' | 'actualizacion-posterior';
 
 export interface Source {
   id: string; title: string; author: string; url: string; publisher: string;
@@ -17,7 +18,8 @@ export interface Passage {
 }
 export interface Claim {
   id: string; chapterId: string; page: number; statement: string; status: ClaimStatus;
-  assessment: string; confidence: 'alta' | 'media' | 'baja'; sourceIds: string[]; reviewed: string;
+  context: string; kind: ClaimKind; dataDate: string; evidence: string; assessment: string;
+  limitations: string; confidence: 'alta' | 'media' | 'baja'; sourceIds: string[]; reviewed: string;
 }
 export interface Event { id: string; year: string; title: string; description: string; sourceIds: string[]; category: string; }
 export interface Concept { id: string; name: string; definition: string; chapterIds: string[]; related: string[]; }

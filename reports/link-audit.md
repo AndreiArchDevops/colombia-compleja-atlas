@@ -12,7 +12,7 @@ Fecha de consulta: 2026-11-09. Edición: *Colombia compleja* (2014). Archivo ana
 
 ## Resultado de esta entrega
 
-Se documentan 18 referencias prioritarias: 3 funcionales, 2 redirigidas, 5 sustituidas por ubicación institucional, 4 bloqueadas/no comprobables, 1 rota, 1 sin URL y 2 pendientes. El inventario cubre las URL bibliográficas de mayor relevancia para los módulos ya desarrollados; quedan direcciones impresas adicionales por comprobar individualmente.
+Se documentan 23 referencias prioritarias: 3 funcionales, 2 redirigidas, 5 sustituidas por ubicación institucional, 4 bloqueadas/no comprobables, 1 rota, 6 sin URL y 2 pendientes. En esta entrega se añadieron cinco referencias impresas relevantes para el contraste ambiental e histórico. Dos cuentan con acceso institucional alternativo; en las otras se evita inventar una descarga o enlazar copias sin licencia.
 
 La tabla completa y legible por máquina está en [`reports/link-audit.csv`](link-audit.csv). La Biblioteca web consume el mismo registro tipado usado para presentar filtros y estados.
 
