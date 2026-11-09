@@ -14,8 +14,16 @@ unique(chapters.map(x=>x.id), 'capítulo'); unique(sources.map(x=>x.id), 'fuente
 unique(claims.map(x=>x.id), 'afirmación'); unique(passages.map(x=>x.id), 'pasaje');
 const chapterIds = new Set(chapters.map(x=>x.id)); const appendixIds = new Set(appendices.map(x=>x.id));
 const deepReadingIds = new Set([...chapterIds, ...appendixIds]); const sourceIds = new Set(sources.map(x=>x.id));
-for (const x of [...claims, ...passages, ...quizzes]) if (!chapterIds.has(x.chapterId)) errors.push(`Referencia a capítulo inexistente: ${x.chapterId}`);
-for (const x of claims) for (const id of x.sourceIds) if (!sourceIds.has(id)) errors.push(`${x.id}: fuente inexistente ${id}`);
+for (const x of claims) if (!deepReadingIds.has(x.chapterId)) errors.push(`Referencia a capítulo o apéndice inexistente: ${x.chapterId}`);
+for (const x of [...passages, ...quizzes]) if (!chapterIds.has(x.chapterId)) errors.push(`Referencia a capítulo inexistente: ${x.chapterId}`);
+const claimKinds = new Set(['dato-historico','dato-cientifico','interpretacion','hipotesis-causal','valoracion-normativa','actualizacion-posterior']);
+for (const x of claims) {
+  for (const field of ['statement','context','dataDate','evidence','assessment','limitations','reviewed'] as const) if (!x[field]?.trim()) errors.push(`${x.id}: campo vacío ${field}`);
+  if (!claimKinds.has(x.kind)) errors.push(`${x.id}: tipo inválido ${x.kind}`);
+  if (x.page < 1 || x.page > 300) errors.push(`${x.id}: página fuera de rango`);
+  if (x.sourceIds.length === 0) errors.push(`${x.id}: sin fuentes`);
+  for (const id of x.sourceIds) if (!sourceIds.has(id)) errors.push(`${x.id}: fuente inexistente ${id}`);
+}
 for (const x of passages) if (!sourceIds.has(x.sourceId)) errors.push(`${x.id}: fuente inexistente ${x.sourceId}`);
 for (const x of concepts) for (const id of x.chapterIds) if (!chapterIds.has(id)) errors.push(`${x.id}: capítulo inexistente ${id}`);
 for (const x of quizzes) if (x.answer < 0 || x.answer >= x.options.length) errors.push(`${x.id}: respuesta fuera de rango`);
