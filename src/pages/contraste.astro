@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import { chapters, claims, sources } from '../data/book';
 import { appendices } from '../data/learning';
+import { withBase } from '../utils/paths';
 
 const statusLabels = { confirmada:'Confirmada', parcial:'Parcialmente confirmada', controvertida:'Controvertida', refutada:'Refutada', 'no-verificable':'No verificable', interpretacion:'Interpretación' };
 const kindLabels = { 'dato-historico':'Dato histórico', 'dato-cientifico':'Dato científico', interpretacion:'Interpretación del autor', 'hipotesis-causal':'Hipótesis causal', 'valoracion-normativa':'Valoración normativa', 'actualizacion-posterior':'Actualización posterior' };
@@ -51,6 +52,7 @@ const maxCount = Math.max(...statusCounts.map(x => x.count));
               <div><dt>Última revisión</dt><dd>{c.reviewed}</dd></div>
             </dl>
             <h4>Fuentes</h4><ul>{c.sourceIds.map(id => { const s=sources.find(x=>x.id===id); return <li><a href={s?.url} target="_blank" rel="noreferrer">{s?.title}</a>{s?.published && ` (${s.published})`}</li> })}</ul>
+            <p><a href={`${withBase('auditoria/')}#${c.id}`}>Consultar revisión académica de esta ficha →</a></p>
           </details>
         </article>;
       })}

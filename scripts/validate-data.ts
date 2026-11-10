@@ -42,7 +42,10 @@ for (const id of auditedClaimIds) if (!claimAuditDecisions[id]) errors.push(`${i
 for (const id of Object.keys(claimAuditDecisions)) if (!auditedClaimIds.has(id)) errors.push(`${id}: decisión editorial sin ficha`);
 for (const row of editorialAudit.filter(x=>x.scope==='ficha')) {
   if ((row.result as string) === 'confirmado' || (row.result as string) === 'confirmado con salvedad') errors.push(`${row.recordId}: resultado editorial heredado del contraste`);
-  if (row.result === 'cotejo documentado' && row.evidence.startsWith('La ficha contiene')) errors.push(`${row.recordId}: cotejo sin evidencia editorial específica`);
+  for (const field of ['bookCheck','externalCheck','method','evidenceDate','uncertainty','correction'] as const) if (!row[field].trim()) errors.push(`${row.recordId}: auditoría sin ${field}`);
+  if (row.sourceIds.length === 0) errors.push(`${row.recordId}: auditoría sin fuentes`);
+  for (const id of row.sourceIds) if (!sourceIds.has(id)) errors.push(`${row.recordId}: fuente de auditoría inexistente ${id}`);
+  if (row.result === 'cotejo documentado' && !row.bookCheck.includes('página')) errors.push(`${row.recordId}: cotejo sin localización textual específica`);
 }
 for (const [id, deep] of Object.entries(deepChapters)) {
   if (!deepReadingIds.has(id)) errors.push(`Investigación profunda: capítulo o apéndice inexistente ${id}`);
