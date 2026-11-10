@@ -4,6 +4,7 @@ import ReaderTools from '../../components/ReaderTools.astro';
 import { appendices } from '../../data/learning';
 import { deepChapters } from '../../data/deepResearch';
 import { media } from '../../data/media';
+import { passages } from '../../data/book';
 import { withBase } from '../../utils/paths';
 
 export function getStaticPaths(){
@@ -12,6 +13,7 @@ export function getStaticPaths(){
 const {appendix}=Astro.props;
 const deep=deepChapters[appendix.id]!;
 const appendixMedia=media.filter(item=>deep.mediaIds.includes(item.id)&&item.localPath);
+const appendixPassages=passages.filter(item=>item.chapterId===appendix.id);
 const idx=appendices.findIndex(item=>item.id===appendix.id);
 const prev=appendices[idx-1]; const next=appendices[idx+1];
 ---
@@ -25,8 +27,9 @@ const prev=appendices[idx-1]; const next=appendices[idx+1];
     <section id="estructura"><h2>Estructura y argumentos</h2><div class="deep-sections">{deep.sections.map((section,i)=><article class="card"><span class="card-number">{String(i+1).padStart(2,'0')} · pp. {section.pages}</span><h3>{section.title}</h3><p>{section.argument}</p><h4>Casos y ejemplos</h4><ul>{section.examples.map(example=><li>{example}</li>)}</ul></article>)}</div></section>
     <section id="vocabulario"><h2>Vocabulario de trabajo</h2><dl class="vocabulary-grid">{deep.vocabulary.map(item=><div class="card"><dt>{item.term}</dt><dd>{item.definition}</dd></div>)}</dl></section>
     <section id="limites"><h2>Supuestos y limitaciones</h2><ul>{deep.assumptions.map(item=><li>{item}</li>)}</ul><div class="grid two"><article class="card"><h3>Conclusiones</h3><ul>{deep.conclusions.map(item=><li>{item}</li>)}</ul></article><article class="card"><h3>Preguntas abiertas</h3><ul>{deep.openQuestions.map(item=><li>{item}</li>)}</ul></article></div></section>
+    {appendixPassages.length>0&&<section id="pasajes"><h2>Pasaje verificado</h2>{appendixPassages.map(p=><blockquote class="card"><p>{p.quote}</p><footer>p. {p.page} · {p.context}</footer></blockquote>)}</section>}
     {appendixMedia.length>0&&<section id="paisajes"><h2>Paisajes para contrastar la teoría</h2><p>Estas imágenes ilustran configuraciones territoriales; no prueban por sí mismas los argumentos.</p><div class="media-strip">{appendixMedia.map(item=><figure class="card"><img src={withBase(item.localPath.replace(/^\//,''))} alt={item.alt} loading="lazy" decoding="async"/><figcaption><strong>{item.title}</strong><br/>{item.relation}<br/><small>{item.author} · <a href={item.sourceUrl}>{item.license}</a></small></figcaption></figure>)}</div></section>}
     <section id="recuperacion"><p class="eyebrow">Recuperación activa</p><h2>Recuerda antes de revelar</h2><div class="grid">{deep.retrieval.map((item,i)=><details class="card recall-card"><summary>{i+1}. {item.question}</summary><p><strong>Respuesta orientativa:</strong> {item.answer}</p></details>)}</div></section>
     <nav class="chapter-nav" aria-label="Entre apéndices">{prev?<a class="button secondary" href={withBase(`apendices/${prev.id}/`)}>← {prev.title}</a>:<a class="button secondary" href={withBase('capitulos/c8/')}>← Capítulo VIII</a>}{next?<a class="button" href={withBase(`apendices/${next.id}/`)}>{next.title} →</a>:<a class="button" href={withBase('libro/')}>Volver al libro</a>}</nav>
-  </article><aside><div class="card sticky-card"><p class="eyebrow">En esta página</p><nav class="toc" aria-label="Tabla de contenidos"><a href="#lectura">Explicación</a><a href="#estructura">Estructura</a><a href="#vocabulario">Vocabulario</a><a href="#limites">Límites</a>{appendixMedia.length>0&&<a href="#paisajes">Paisajes</a>}<a href="#recuperacion">Recuperación activa</a></nav></div><ReaderTools id={appendix.id}/></aside></div></section>
+  </article><aside><div class="card sticky-card"><p class="eyebrow">En esta página</p><nav class="toc" aria-label="Tabla de contenidos"><a href="#lectura">Explicación</a><a href="#estructura">Estructura</a><a href="#vocabulario">Vocabulario</a><a href="#limites">Límites</a>{appendixPassages.length>0&&<a href="#pasajes">Pasaje</a>}{appendixMedia.length>0&&<a href="#paisajes">Paisajes</a>}<a href="#recuperacion">Recuperación activa</a></nav></div><ReaderTools id={appendix.id}/></aside></div></section>
 </Base>
