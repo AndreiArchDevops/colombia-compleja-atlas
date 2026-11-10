@@ -3,7 +3,7 @@ import { linkAudit } from '../src/data/linkAudit.ts';
 import { media } from '../src/data/media.ts';
 import { deepChapters } from '../src/data/deepResearch.ts';
 import { appendices } from '../src/data/learning.ts';
-import { editorialAudit } from '../src/data/editorialAudit.ts';
+import { claimAuditDecisions, editorialAudit } from '../src/data/editorialAudit.ts';
 import { existsSync } from 'node:fs';
 
 const errors: string[] = [];
@@ -37,6 +37,13 @@ for (const x of media) if (x.localPath && !existsSync(`public${x.localPath}`)) e
 const expectedAuditIds = new Set([...claims.map(x=>x.id), ...passages.map(x=>x.id)]);
 for (const id of expectedAuditIds) if (!editorialAudit.some(x=>x.recordId===id)) errors.push(`${id}: sin registro de auditoría editorial`);
 for (const row of editorialAudit) if (!expectedAuditIds.has(row.recordId)) errors.push(`${row.recordId}: auditoría sin registro editorial`);
+const auditedClaimIds = new Set(claims.map(x=>x.id));
+for (const id of auditedClaimIds) if (!claimAuditDecisions[id]) errors.push(`${id}: sin decisión explícita de auditoría editorial`);
+for (const id of Object.keys(claimAuditDecisions)) if (!auditedClaimIds.has(id)) errors.push(`${id}: decisión editorial sin ficha`);
+for (const row of editorialAudit.filter(x=>x.scope==='ficha')) {
+  if ((row.result as string) === 'confirmado' || (row.result as string) === 'confirmado con salvedad') errors.push(`${row.recordId}: resultado editorial heredado del contraste`);
+  if (row.result === 'cotejo documentado' && row.evidence.startsWith('La ficha contiene')) errors.push(`${row.recordId}: cotejo sin evidencia editorial específica`);
+}
 for (const [id, deep] of Object.entries(deepChapters)) {
   if (!deepReadingIds.has(id)) errors.push(`Investigación profunda: capítulo o apéndice inexistente ${id}`);
   if (!deep || deep.sections.length < 3 || deep.vocabulary.length < 3 || deep.retrieval.length < 3) errors.push(`${id}: investigación profunda incompleta`);
