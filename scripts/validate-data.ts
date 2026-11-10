@@ -4,6 +4,7 @@ import { media } from '../src/data/media.ts';
 import { deepChapters } from '../src/data/deepResearch.ts';
 import { appendices } from '../src/data/learning.ts';
 import { claimAuditDecisions, editorialAudit } from '../src/data/editorialAudit.ts';
+import { cartographicSources, territorialSystems } from '../src/data/territorialSystems.ts';
 import { existsSync } from 'node:fs';
 
 const errors: string[] = [];
@@ -14,6 +15,7 @@ const unique = <T>(items: T[], label: string) => {
 unique(chapters.map(x=>x.id), 'capítulo'); unique(sources.map(x=>x.id), 'fuente');
 unique(claims.map(x=>x.id), 'afirmación'); unique(passages.map(x=>x.id), 'pasaje');
 unique(editorialAudit.map(x=>x.recordId), 'registro de auditoría');
+unique(territorialSystems.map(x=>x.id), 'sistema territorial'); unique(cartographicSources.map(x=>x.id), 'fuente cartográfica');
 const chapterIds = new Set(chapters.map(x=>x.id)); const appendixIds = new Set(appendices.map(x=>x.id));
 const deepReadingIds = new Set([...chapterIds, ...appendixIds]); const sourceIds = new Set(sources.map(x=>x.id));
 for (const x of claims) if (!deepReadingIds.has(x.chapterId)) errors.push(`Referencia a capítulo o apéndice inexistente: ${x.chapterId}`);
@@ -34,6 +36,17 @@ for (const x of linkAudit) if (x.pdfPage < x.printedPage) errors.push(`${x.id}: 
 for (const x of media) if (x.localPath && (!x.author || !x.license || !x.alt)) errors.push(`${x.id}: metadatos de imagen incompletos`);
 for (const x of media) if (x.modified && x.localPath && !x.transformation) errors.push(`${x.id}: transformación no documentada`);
 for (const x of media) if (x.localPath && !existsSync(`public${x.localPath}`)) errors.push(`${x.id}: archivo de imagen inexistente ${x.localPath}`);
+if (territorialSystems.length !== 19) errors.push(`Se esperaban 19 sistemas territoriales y hay ${territorialSystems.length}`);
+for (const system of territorialSystems) {
+  if (system.id < 1 || system.id > 19) errors.push(`${system.name}: identificador territorial fuera de rango`);
+  for (const field of ['name','pages','summary','biophysical','settlement','history','economy','tensions'] as const) if (!system[field].trim()) errors.push(`Sistema ${system.id}: campo vacío ${field}`);
+  if (!/^[0-9]{3}–[0-9]{3}$/.test(system.pages)) errors.push(`Sistema ${system.id}: rango impreso inválido ${system.pages}`);
+  if (system.anchor.lon < -83 || system.anchor.lon > -66 || system.anchor.lat < -5 || system.anchor.lat > 14) errors.push(`Sistema ${system.id}: ancla fuera de Colombia o su entorno insular`);
+  if (system.references.length < 2) errors.push(`Sistema ${system.id}: referencias insuficientes`);
+  if (system.mediaId && !media.some(item=>item.id===system.mediaId && item.localPath)) errors.push(`Sistema ${system.id}: medio inexistente o no publicable ${system.mediaId}`);
+}
+for (const source of cartographicSources) for (const field of ['institution','title','date','scale','license','url','use'] as const) if (!source[field].trim()) errors.push(`${source.id}: metadato cartográfico vacío ${field}`);
+if (!existsSync('public/data/colombia-outline.geojson')) errors.push('Falta el contorno GeoJSON documentado');
 const expectedAuditIds = new Set([...claims.map(x=>x.id), ...passages.map(x=>x.id)]);
 for (const id of expectedAuditIds) if (!editorialAudit.some(x=>x.recordId===id)) errors.push(`${id}: sin registro de auditoría editorial`);
 for (const row of editorialAudit) if (!expectedAuditIds.has(row.recordId)) errors.push(`${row.recordId}: auditoría sin registro editorial`);
@@ -53,4 +66,4 @@ for (const [id, deep] of Object.entries(deepChapters)) {
   for (const mediaId of deep?.mediaIds ?? []) if (!media.some(x=>x.id===mediaId)) errors.push(`${id}: medio inexistente ${mediaId}`);
 }
 if (errors.length) { console.error(errors.join('\n')); process.exit(1); }
-console.log(`Datos válidos: ${chapters.length} capítulos, ${Object.keys(deepChapters).length} lecturas profundas, ${claims.length} verificaciones, ${sources.length} fuentes, ${passages.length} pasajes, ${media.length} medios, ${editorialAudit.length} auditorías editoriales y ${linkAudit.length} enlaces auditados.`);
+console.log(`Datos válidos: ${chapters.length} capítulos, ${Object.keys(deepChapters).length} lecturas profundas, ${claims.length} verificaciones, ${sources.length} fuentes, ${passages.length} pasajes, ${media.length} medios, ${editorialAudit.length} auditorías editoriales, ${linkAudit.length} enlaces auditados y ${territorialSystems.length} sistemas territoriales.`);
