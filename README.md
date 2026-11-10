@@ -14,6 +14,10 @@ La rama `feature/fase-3-investigacion-profunda` añade una lectura directa y doc
 
 La auditoría editorial integral coteja las 28 fichas y 11 pasajes con el PDF, distingue documentos citados de fuentes relacionadas y publica una matriz trazable en `/auditoria/`. El atlas añade una comparación reproducible de los 19 sistemas ambientales territoriales, dos recursos visuales licenciados y enlaces de retorno a la página física del PDF. Los JPG redundantes se retiraron del despliegue porque los WebP son las copias utilizadas; las fichas de Commons preservan el original y su licencia. Véase [`reports/fase-3-entrega-5.md`](reports/fase-3-entrega-5.md).
 
+## Fase 4 — investigación académica
+
+La primera entrega revisa individualmente las 28 fichas y convierte la matriz editorial en expedientes que separan cotejo del texto, evidencia externa, método, fecha, incertidumbre y corrección. Las 19 revisiones pendientes recibieron una decisión explícita; cuatro hipótesis permanecen como evidencia insuficiente porque las fuentes reunidas no permiten inferencia causal. El detalle reproducible está en [`reports/fase-4-entrega-1.md`](reports/fase-4-entrega-1.md).
+
 ## Desarrollo
 
 ```bash
