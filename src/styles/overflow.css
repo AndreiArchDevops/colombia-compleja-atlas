@@ -1,0 +1,3 @@
+/* Las tablas tienen su propio contenedor desplazable; evita que recursos embebidos amplíen el lienzo completo. */
+body { overflow-x: clip; }
+object[type="image/svg+xml"] { display: block; width: 100%; max-width: 100%; }

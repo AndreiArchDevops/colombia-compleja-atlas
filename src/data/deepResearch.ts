@@ -51,7 +51,7 @@ export const deepChapters: Partial<Record<string, DeepChapter>> = {
     conclusions:['Las representaciones del país producen efectos materiales.','Cada proyecto nacional simplifica una realidad que contiene memorias e intereses múltiples.','Comprender Colombia exige estudiar simultáneamente paisaje, experiencia histórica e ideas dominantes.'],
     openQuestions:['¿Qué imaginarios de mujeres, comunidades locales y regiones periféricas quedan fuera de esta secuencia?','¿Cómo distinguir una imagen compartida de una impuesta por élites o medios?','¿Qué cambió en los imaginarios de paz después de 2014?'],
     retrieval:[{question:'¿Qué significa “lo real más lo imaginario” en el argumento?',answer:'Que la complejidad nacional incluye condiciones materiales y representaciones capaces de orientar acciones e instituciones.'},{question:'Nombra tres imaginarios que el capítulo conecta con efectos históricos.',answer:'Por ejemplo: conquista imperial, modernización/desarrollo y seguridad; también Ilustración, riqueza fácil o paz.'},{question:'¿Cuál es el principal límite metodológico de esta panorámica?',answer:'Condensa siglos y grupos muy distintos en una secuencia interpretativa que necesita contraste regional e historiográfico.'}],
-    mediaIds:['map-regions','tayrona']
+    mediaIds:['map-regions','tayrona','mutis-tecoma']
   },
   c2: {
     chapterId: 'c2',
@@ -130,7 +130,7 @@ export const deepChapters: Partial<Record<string, DeepChapter>> = {
     conclusions:['Sociedad y estructura biofísica producen resultados conjuntos mediados por cultura, instituciones y mercado.','La riqueza mineral o biológica no se traduce automáticamente en bienestar territorial.','Los paisajes son también construcciones de poder: se nombran, valoran, ocupan y excluyen.','Explicar la violencia exige combinar territorio con actores, ideas, economías y decisiones históricas.'],
     openQuestions:['¿Qué interacciones pueden medirse con series territoriales y cuáles siguen siendo analogías del ensayo?','¿Cómo cambiaría el relato al partir de historias indígenas, afrocolombianas y de mujeres de cada región?','¿Quién conserva las rentas y quién hereda los pasivos en los distritos extractivos?','¿Qué transformaciones posteriores al acuerdo de paz de 2016 alteran las geografías descritas?'],
     retrieval:[{question:'¿Por qué “oro y pobreza” no es una contradicción lógica para Carrizosa?',answer:'Porque existencia del mineral, extracción, propiedad de la renta y bienestar local son procesos distintos mediados por poder, capital y mercado.'},{question:'¿Qué tres valoraciones del paisaje organiza el capítulo?',answer:'Utilidad, belleza y peligro; son marcos culturales que influyen en la relación con el territorio.'},{question:'¿Por qué la geografía no basta para explicar guerrilla o violencia?',answer:'Porque relieve y cobertura ofrecen condiciones, pero actores, ideologías, mercados, instituciones y decisiones producen los procesos históricos.'},{question:'¿Qué hizo posible el sistema cafetero además del clima de montaña?',answer:'Organización gremial, conocimiento técnico, infraestructura, trabajo y articulación comercial.'}],
-    mediaIds:['chingaza','llanos']
+    mediaIds:['chingaza','llanos','magdalena-photo']
   },
   c5: {
     chapterId: 'c5',
@@ -157,7 +157,7 @@ export const deepChapters: Partial<Record<string, DeepChapter>> = {
     conclusions:['Una región emerge de relaciones entre procesos físicos, vida, historia, poder y flujos económicos.','Los límites administrativos son insuficientes para entender agua, conectividad ecológica, mercados y conflictos.','Riqueza ecológica o extractiva puede coexistir con bajos niveles de bienestar.','La regionalización debe revisarse cuando cambian ciudades, infraestructuras, economías y climas.'],
     openQuestions:['¿Cómo redibujarían estos sistemas comunidades indígenas, afrocolombianas y campesinas?','¿Qué límites cambiaron después de 2014 por deforestación, migración, carreteras, minería o expansión urbana?','¿Qué indicadores permiten comparar bienestar sin borrar diferencias culturales?','¿Cómo representar transiciones y redes sin convertirlas en líneas rígidas?'],
     retrieval:[{question:'¿En qué difiere un sistema ambiental territorial de una región natural?',answer:'Integra historia, población, economía, poder y transformaciones ecológicas; no se define solo por rasgos biofísicos.'},{question:'¿Qué demuestra la comparación entre Sierra Nevada, metrópoli costeña y archipiélago?',answer:'Que sistemas cercanos pueden operar en escalas, conectividades, culturas y presiones muy distintas.'},{question:'¿Por qué la Orinoquia no debe tratarse como una sola llanura?',answer:'Piedemonte, sabanas inundables y altillanura tienen suelos, aguas, relieves, actores y trayectorias productivas diferentes.'},{question:'¿Qué función cumple la sección “sistemas en formación”?',answer:'Reconocer que la regionalización es dinámica y que urbanización y extracción crean nuevas articulaciones.'},{question:'¿Cuál es el principal límite del mapa del capítulo?',answer:'Generaliza límites y voces; es una hipótesis comparativa fechada, no una división natural definitiva.'}],
-    mediaIds:['map-regions','tayrona','chingaza','llanos','amazonia']
+    mediaIds:['map-regions','tayrona','chingaza','llanos','amazonia','magdalena-photo']
   },
   c6: {
     chapterId:'c6',
