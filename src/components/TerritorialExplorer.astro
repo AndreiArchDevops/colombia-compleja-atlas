@@ -1,0 +1,118 @@
+---
+import { territorialSystems } from '../data/territorialSystems';
+import { media } from '../data/media';
+import { withBase } from '../utils/paths';
+import outlineRaw from '../../public/data/colombia-outline.geojson?raw';
+
+const outline = JSON.parse(outlineRaw).features[0].geometry.coordinates[0] as [number, number][];
+const project = ([lon, lat]: [number, number]) => ({ x: (lon + 82.2) * 35, y: (13 - lat) * 31 });
+const path = outline.map((point, index) => `${index ? 'L' : 'M'}${project(point).x.toFixed(1)},${project(point).y.toFixed(1)}`).join(' ') + ' Z';
+const mediaById = new Map(media.map(item => [item.id, item]));
+const pdfUrl = 'https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf';
+const pdfPage = (pages: string) => Number(pages.split('–')[0]) + 1;
+---
+<div class="territorial-explorer" data-territorial-explorer>
+  <div class="map-toolbar" aria-label="Controles del explorador">
+    <label>Filtrar por proceso
+      <select data-process-filter>
+        <option value="">Todos los procesos</option>
+        {[...new Set(territorialSystems.flatMap(system => system.processes))].sort().map(process => <option value={process}>{process}</option>)}
+      </select>
+    </label>
+    <p class="map-status" aria-live="polite" data-map-status>19 sistemas disponibles</p>
+  </div>
+  <div class="explorer-layout">
+    <div class="map-panel">
+      <svg class="territorial-map" viewBox="0 0 590 555" role="img" aria-labelledby="territorial-map-title territorial-map-desc">
+        <title id="territorial-map-title">Puntos de orientación para los 19 sistemas ambientales territoriales</title>
+        <desc id="territorial-map-desc">Contorno generalizado de Colombia con diecinueve puntos urbanos de referencia. Los puntos no representan fronteras, áreas ni centroides de los sistemas.</desc>
+        <path d={path} class="country-outline" />
+        <g class="map-grid" aria-hidden="true"><path d="M42 31V536M182 31V536M322 31V536M462 31V536M42 31H567M42 186H567M42 341H567M42 496H567" /></g>
+        {territorialSystems.map(system => {
+          const point = project([system.anchor.lon, system.anchor.lat]);
+          return <g class="system-marker" data-map-system={system.id} transform={`translate(${point.x} ${point.y})`}>
+            <circle r="15" />
+            <text y="5" text-anchor="middle">{system.id}</text>
+            <title>{system.id}. {system.name}; ancla: {system.anchor.name}</title>
+          </g>;
+        })}
+      </svg>
+      <p class="map-caption"><strong>Cómo leer este mapa:</strong> el contorno Natural Earth 1:110m es contextual. Cada círculo usa la coordenada verificable de una ciudad de referencia de Natural Earth 1:10m, elegida editorialmente para abrir una ficha. No expresa extensión, límite ni centroide del sistema.</p>
+    </div>
+    <div class="system-index" aria-label="Índice de sistemas">
+      {territorialSystems.map((system, index) => <button type="button" class="system-index-button" data-index-system={system.id} aria-pressed={index === 0 ? 'true' : 'false'} data-processes={system.processes.join('|')}><span>{system.id}</span>{system.name}<small>pp. {system.pages}</small></button>)}
+    </div>
+  </div>
+
+  <div class="system-details">
+    {territorialSystems.map((system, index) => {
+      const image = system.mediaId ? mediaById.get(system.mediaId) : undefined;
+      return <article class="system-detail" data-system-detail={system.id} hidden={index !== 0} tabindex="-1">
+        <header><p class="eyebrow">Sistema {system.id} · pp. {system.pages}</p><h3>{system.name}</h3><p class="lede">{system.summary}</p></header>
+        <div class="detail-grid">
+          <dl>
+            <div><dt>Estructura biofísica</dt><dd>{system.biophysical}</dd></div>
+            <div><dt>Poblamiento</dt><dd>{system.settlement}</dd></div>
+            <div><dt>Procesos históricos</dt><dd>{system.history}</dd></div>
+            <div><dt>Economía</dt><dd>{system.economy}</dd></div>
+            <div><dt>Tensiones ambientales</dt><dd>{system.tensions}</dd></div>
+          </dl>
+          <aside>
+            {image && image.localPath ? <figure><img src={withBase(image.localPath)} alt={image.alt} width="800" height="500" loading="lazy" /><figcaption>{image.title}, {image.author}. <a href={image.sourceUrl}>{image.license}</a>. {image.relation}</figcaption></figure> : <div class="map-placeholder"><strong>Sin fotografía asignada</strong><span>Se evita usar una imagen genérica que sugiera una correspondencia territorial no documentada.</span></div>}
+            <p><strong>Ancla de orientación:</strong> {system.anchor.name} ({system.anchor.lat.toFixed(4)}, {system.anchor.lon.toFixed(4)}). No delimita el sistema.</p>
+          </aside>
+        </div>
+        <div class="detail-actions"><a class="button" href={`${pdfUrl}#page=${pdfPage(system.pages)}`} rel="external">Abrir página en el PDF autorizado ↗</a><a class="button secondary" href={withBase('capitulos/c5/')}>Leer el análisis del capítulo V</a></div>
+        <details><summary>Referencias y cautelas</summary><ul>{system.references.map(reference => <li>{reference}</li>)}</ul><p>La síntesis es una paráfrasis editorial del capítulo V. Sus categorías combinan rasgos físicos, poblamiento, historia y poder; no sustituyen zonificaciones oficiales.</p></details>
+      </article>;
+    })}
+  </div>
+
+  <section class="comparison" aria-labelledby="compare-title">
+    <h3 id="compare-title">Comparar dos territorios</h3>
+    <p>La comparación yuxtapone categorías textuales; no calcula puntajes ni inventa indicadores.</p>
+    <div class="compare-controls">
+      <label>Territorio A<select data-compare-select="a">{territorialSystems.map(system => <option value={system.id}>{system.id}. {system.name}</option>)}</select></label>
+      <label>Territorio B<select data-compare-select="b">{territorialSystems.map((system, index) => <option value={system.id} selected={index === 12}>{system.id}. {system.name}</option>)}</select></label>
+    </div>
+    <div class="compare-grid">
+      {(['a','b'] as const).map(slot => <div>{territorialSystems.map((system, index) => <article class="card compare-card" data-compare-card={slot} data-system-id={system.id} hidden={slot === 'a' ? index !== 0 : index !== 12}><p class="eyebrow">Sistema {system.id}</p><h4>{system.name}</h4><p><strong>Medio:</strong> {system.biophysical}</p><p><strong>Historia:</strong> {system.history}</p><p><strong>Economía:</strong> {system.economy}</p><p><strong>Tensión:</strong> {system.tensions}</p></article>)}</div>)}
+    </div>
+  </section>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-territorial-explorer]').forEach(explorer => {
+    const indexButtons = [...explorer.querySelectorAll<HTMLButtonElement>('[data-index-system]')];
+    const markers = [...explorer.querySelectorAll<SVGGElement>('[data-map-system]')];
+    const details = [...explorer.querySelectorAll<HTMLElement>('[data-system-detail]')];
+    const status = explorer.querySelector<HTMLElement>('[data-map-status]');
+    const selectSystem = (id: string, focus = false) => {
+      indexButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.indexSystem === id)));
+      markers.forEach(marker => marker.classList.toggle('is-active', marker.dataset.mapSystem === id));
+      details.forEach(detail => { detail.hidden = detail.dataset.systemDetail !== id; });
+      if (focus) explorer.querySelector<HTMLElement>(`[data-system-detail="${id}"]`)?.focus({preventScroll:true});
+    };
+    indexButtons.forEach(button => button.addEventListener('click', () => selectSystem(button.dataset.indexSystem || '1')));
+    markers.forEach(marker => {
+      marker.setAttribute('tabindex','0'); marker.setAttribute('role','button'); marker.setAttribute('aria-label',`Abrir sistema ${marker.dataset.mapSystem}`);
+      marker.addEventListener('click', () => selectSystem(marker.dataset.mapSystem || '1'));
+      marker.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectSystem(marker.dataset.mapSystem || '1', true); } });
+    });
+    explorer.querySelector<HTMLSelectElement>('[data-process-filter]')?.addEventListener('change', event => {
+      const value = (event.currentTarget as HTMLSelectElement).value; let visible = 0;
+      indexButtons.forEach(button => { const match = !value || (button.dataset.processes || '').split('|').includes(value); button.hidden = !match; if(match) visible++; });
+      markers.forEach(marker => marker.classList.toggle('is-filtered', Boolean(value) && !indexButtons.find(button => button.dataset.indexSystem === marker.dataset.mapSystem && !button.hidden)));
+      if(status) status.textContent = `${visible} ${visible === 1 ? 'sistema disponible' : 'sistemas disponibles'}`;
+    });
+    explorer.querySelectorAll<HTMLSelectElement>('[data-compare-select]').forEach(select => select.addEventListener('change', () => {
+      const slot = select.dataset.compareSelect;
+      explorer.querySelectorAll<HTMLElement>(`[data-compare-card="${slot}"]`).forEach(card => card.hidden = card.dataset.systemId !== select.value);
+    }));
+    selectSystem('1');
+  });
+</script>
+
+<style>
+  .territorial-explorer{margin-top:2rem}.map-toolbar,.compare-controls{display:flex;gap:1rem;align-items:end;justify-content:space-between;flex-wrap:wrap;margin-bottom:1rem}.map-toolbar label,.compare-controls label{display:grid;gap:.35rem;font-weight:700}.map-toolbar select,.compare-controls select{font:inherit;padding:.65rem;background:white;border:1px solid var(--line);max-width:100%}.map-status{margin:0;color:var(--muted)}.explorer-layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(270px,.75fr);gap:1rem}.map-panel{background:#e8eee8;border:1px solid var(--line);border-radius:8px;padding:1rem}.territorial-map{display:block;width:100%;max-height:680px}.country-outline{fill:#d5ddcc;stroke:#174c3c;stroke-width:2}.map-grid path{fill:none;stroke:#fff;stroke-width:1;opacity:.6}.system-marker{cursor:pointer}.system-marker circle{fill:#fffdf8;stroke:#174c3c;stroke-width:2;transition:.15s}.system-marker text{font:700 11px system-ui;fill:#17231d;pointer-events:none}.system-marker:hover circle,.system-marker:focus circle,.system-marker.is-active circle{fill:#c7793a;stroke:#17231d;stroke-width:3}.system-marker.is-active text{fill:white}.system-marker.is-filtered{opacity:.12;pointer-events:none}.map-caption{font-size:.85rem;margin:.5rem 0 0}.system-index{display:grid;grid-template-columns:1fr 1fr;gap:.45rem;align-content:start;max-height:680px;overflow:auto;padding:.15rem}.system-index-button{display:grid;grid-template-columns:auto 1fr;text-align:left;align-items:center;gap:.45rem;border:1px solid var(--line);background:var(--card);padding:.6rem;font:inherit;cursor:pointer}.system-index-button>span{display:grid;place-items:center;width:1.7rem;height:1.7rem;border-radius:50%;background:#e3eadf;font-weight:800}.system-index-button small{grid-column:2;color:var(--muted)}.system-index-button[aria-pressed="true"]{background:var(--forest);color:white}.system-index-button[aria-pressed="true"] small{color:#e8e5dc}.system-detail{margin-top:1rem;background:var(--card);border:1px solid var(--line);padding:clamp(1rem,3vw,2rem);border-radius:8px}.system-detail:focus{outline:none}.detail-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:1.5rem}.detail-grid dl{margin:0}.detail-grid dl>div{padding:.75rem 0;border-bottom:1px solid var(--line)}dt{font-weight:800}dd{margin:.25rem 0 0}.detail-grid figure{margin:0;background:#f4f0e6}.detail-grid img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}.detail-grid figcaption{padding:.7rem;font-size:.8rem}.map-placeholder{min-height:14rem;display:grid;place-content:center;gap:.5rem;padding:1rem;text-align:center;background:linear-gradient(135deg,#e8eee8,#f4f0e6);color:var(--muted)}.detail-actions{display:flex;gap:.7rem;flex-wrap:wrap;margin:1.2rem 0}.comparison{margin-top:2.5rem}.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.compare-card h4{font:700 1.35rem var(--serif);margin:.4rem 0}.compare-card p{font-size:.9rem}.compare-card[hidden],.system-detail[hidden],.system-index-button[hidden]{display:none}@media(max-width:850px){.explorer-layout,.detail-grid{grid-template-columns:1fr}.system-index{max-height:none}.compare-grid{grid-template-columns:1fr}}@media(max-width:520px){.system-index{grid-template-columns:1fr}.map-panel{padding:.35rem}.system-marker circle{r:18}.compare-controls label{width:100%}.compare-controls select{width:100%}}
+</style>
