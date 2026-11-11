@@ -5,6 +5,7 @@ import { deepChapters } from '../src/data/deepResearch.ts';
 import { appendices } from '../src/data/learning.ts';
 import { claimAuditDecisions, editorialAudit } from '../src/data/editorialAudit.ts';
 import { cartographicSources, territorialSystems } from '../src/data/territorialSystems.ts';
+import { documentLibrary } from '../src/data/documentLibrary.ts';
 import { existsSync } from 'node:fs';
 
 const errors: string[] = [];
@@ -16,6 +17,8 @@ unique(chapters.map(x=>x.id), 'capítulo'); unique(sources.map(x=>x.id), 'fuente
 unique(claims.map(x=>x.id), 'afirmación'); unique(passages.map(x=>x.id), 'pasaje');
 unique(editorialAudit.map(x=>x.recordId), 'registro de auditoría');
 unique(territorialSystems.map(x=>x.id), 'sistema territorial'); unique(cartographicSources.map(x=>x.id), 'fuente cartográfica');
+unique(documentLibrary.map(x=>x.id), 'recurso documental');
+unique(documentLibrary.map(x=>`${x.title.toLowerCase()}|${x.year}`), 'título y año documental');
 const chapterIds = new Set(chapters.map(x=>x.id)); const appendixIds = new Set(appendices.map(x=>x.id));
 const deepReadingIds = new Set([...chapterIds, ...appendixIds]); const sourceIds = new Set(sources.map(x=>x.id));
 for (const x of claims) if (!deepReadingIds.has(x.chapterId)) errors.push(`Referencia a capítulo o apéndice inexistente: ${x.chapterId}`);
@@ -47,6 +50,23 @@ for (const system of territorialSystems) {
 }
 for (const source of cartographicSources) for (const field of ['institution','title','date','scale','license','url','use'] as const) if (!source[field].trim()) errors.push(`${source.id}: metadato cartográfico vacío ${field}`);
 if (!existsSync('public/data/colombia-outline.geojson')) errors.push('Falta el contorno GeoJSON documentado');
+const documentNatures = new Set(['libro','artículo','informe','mapa histórico','cartografía contemporánea','catálogo']);
+const documentRelations = new Set(['obra citada','documento original localizado','catálogo bibliográfico','material relacionado']);
+const accessStates = new Set(['abierto','catálogo','suscripción','sin URL','no comprobable']);
+for (const record of documentLibrary) {
+  for (const field of ['authors','year','title','publication','rights','note'] as const) if (!record[field].trim()) errors.push(`${record.id}: campo documental vacío ${field}`);
+  if (!documentNatures.has(record.nature)) errors.push(`${record.id}: naturaleza documental inválida`);
+  if (!documentRelations.has(record.relation)) errors.push(`${record.id}: relación documental inválida`);
+  if (!accessStates.has(record.access)) errors.push(`${record.id}: acceso documental inválido`);
+  if (record.access === 'sin URL' && record.url) errors.push(`${record.id}: estado sin URL contiene enlace`);
+  if (record.url && (!record.urlRole || !record.accessed)) errors.push(`${record.id}: enlace sin función o fecha de consulta`);
+  if (record.relation === 'obra citada' && !record.bibliography) errors.push(`${record.id}: obra citada sin ubicación bibliográfica`);
+  if (record.bibliography && record.bibliography.pdfPage !== record.bibliography.printedPage + 1) errors.push(`${record.id}: desfase de página bibliográfica inválido`);
+  if (!record.themes.length || !record.regions.length || !record.sectionIds.length) errors.push(`${record.id}: interconexión documental incompleta`);
+  for (const id of record.sectionIds) if (!deepReadingIds.has(id)) errors.push(`${record.id}: sección inexistente ${id}`);
+  for (const id of record.systemIds) if (!territorialSystems.some(system=>system.id===id)) errors.push(`${record.id}: sistema territorial inexistente ${id}`);
+  if (record.imageUrl && (!record.attribution || !record.transformation || !record.rights.toLowerCase().includes('dominio público'))) errors.push(`${record.id}: reproducción visual sin derechos o transformación completos`);
+}
 const expectedAuditIds = new Set([...claims.map(x=>x.id), ...passages.map(x=>x.id)]);
 for (const id of expectedAuditIds) if (!editorialAudit.some(x=>x.recordId===id)) errors.push(`${id}: sin registro de auditoría editorial`);
 for (const row of editorialAudit) if (!expectedAuditIds.has(row.recordId)) errors.push(`${row.recordId}: auditoría sin registro editorial`);
@@ -66,4 +86,4 @@ for (const [id, deep] of Object.entries(deepChapters)) {
   for (const mediaId of deep?.mediaIds ?? []) if (!media.some(x=>x.id===mediaId)) errors.push(`${id}: medio inexistente ${mediaId}`);
 }
 if (errors.length) { console.error(errors.join('\n')); process.exit(1); }
-console.log(`Datos válidos: ${chapters.length} capítulos, ${Object.keys(deepChapters).length} lecturas profundas, ${claims.length} verificaciones, ${sources.length} fuentes, ${passages.length} pasajes, ${media.length} medios, ${editorialAudit.length} auditorías editoriales, ${linkAudit.length} enlaces auditados y ${territorialSystems.length} sistemas territoriales.`);
+console.log(`Datos válidos: ${chapters.length} capítulos, ${Object.keys(deepChapters).length} lecturas profundas, ${claims.length} verificaciones, ${sources.length} fuentes, ${passages.length} pasajes, ${media.length} medios, ${editorialAudit.length} auditorías editoriales, ${linkAudit.length} enlaces auditados, ${territorialSystems.length} sistemas territoriales y ${documentLibrary.length} recursos documentales.`);
