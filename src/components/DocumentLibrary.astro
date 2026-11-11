@@ -1,0 +1,75 @@
+---
+import { documentLibrary } from '../data/documentLibrary';
+import { withBase } from '../utils/paths';
+
+const options = (field: 'nature'|'relation') => [...new Set(documentLibrary.map(record => record[field]))].sort();
+const regions = [...new Set(documentLibrary.flatMap(record => record.regions))].sort();
+const themes = [...new Set(documentLibrary.flatMap(record => record.themes))].sort();
+const sections = ['c1','c2','c3','c4','c5','c6','c7','c8','a1','a2'];
+const sectionLabel = (id: string) => id.startsWith('c') ? `Capítulo ${id.slice(1)}` : `Apéndice ${id.slice(1)}`;
+const sectionUrl = (id: string) => id.startsWith('c') ? `capitulos/${id}/` : `apendices/${id}/`;
+---
+<div class="document-library" data-document-library>
+  <div class="library-controls" aria-label="Filtros de la biblioteca">
+    <label class="search-label">Buscar
+      <input type="search" data-doc-search placeholder="Autor, título, editorial, tema o territorio…" />
+    </label>
+    <label>Naturaleza<select data-doc-filter="nature"><option value="">Todas</option>{options('nature').map(value=><option value={value}>{value}</option>)}</select></label>
+    <label>Relación documental<select data-doc-filter="relation"><option value="">Todas</option>{options('relation').map(value=><option value={value}>{value}</option>)}</select></label>
+    <label>Tema<select data-doc-filter="themes"><option value="">Todos</option>{themes.map(value=><option value={value}>{value}</option>)}</select></label>
+    <label>Región<select data-doc-filter="regions"><option value="">Todas</option>{regions.map(value=><option value={value}>{value}</option>)}</select></label>
+    <label>Sección<select data-doc-filter="sections"><option value="">Todas</option>{sections.map(value=><option value={value}>{sectionLabel(value)}</option>)}</select></label>
+  </div>
+  <div class="library-summary"><p aria-live="polite" data-doc-count>{documentLibrary.length} recursos visibles</p><button class="filter-button" type="button" data-doc-reset>Limpiar filtros</button></div>
+  <div class="document-grid">
+    {documentLibrary.map(record => <article class="document-card card" id={record.id} data-doc-card data-nature={record.nature} data-relation={record.relation} data-themes={record.themes.join('|')} data-regions={record.regions.join('|')} data-sections={record.sectionIds.join('|')} data-search={`${record.authors} ${record.year} ${record.title} ${record.publication} ${record.themes.join(' ')} ${record.regions.join(' ')} ${record.note}`.toLowerCase()}>
+      <div class="document-meta"><span class="status">{record.relation}</span><span class="pill">{record.nature}</span><span class="pill">{record.access}</span></div>
+      <h3>{record.title}</h3>
+      <p><strong>{record.authors}</strong> · {record.year}</p>
+      <p>{record.publication}</p>
+      {record.bibliography && <details><summary>Referencia tal como aparece en el libro</summary><blockquote>{record.bibliography.transcription}</blockquote><small>Bibliografía impresa p. {record.bibliography.printedPage} · PDF p. {record.bibliography.pdfPage}</small></details>}
+      {(record.scale || record.projection) && <dl class="map-metadata">{record.scale&&<><dt>Escala</dt><dd>{record.scale}</dd></>}{record.projection&&<><dt>Proyección</dt><dd>{record.projection}</dd></>}</dl>}
+      <p>{record.note}</p>
+      <p><strong>Derechos y acceso:</strong> {record.rights}</p>
+      <div class="tag-list">{record.themes.map(theme=><span class="pill">{theme}</span>)}</div>
+      <div class="document-links">
+        {record.url && <a class="button secondary" href={record.url} rel="external">{record.urlRole === 'documento exacto' ? 'Abrir documento' : record.urlRole === 'catálogo' ? 'Abrir catálogo' : 'Abrir ficha'} ↗</a>}
+        {record.sectionIds.map(id=><a href={withBase(sectionUrl(id))}>{sectionLabel(id)}</a>)}
+        {record.systemIds.length>0&&<a href={withBase('atlas/#sistemas')}>{record.systemIds.length} {record.systemIds.length===1?'sistema territorial':'sistemas territoriales'}</a>}
+        {record.sectionIds.some(id=>['c2','c3','c4','c5'].includes(id))&&<a href={withBase('contraste/')}>Fichas de contraste</a>}
+      </div>
+      <small>Consulta externa: {record.accessed || 'sin enlace verificable'}</small>
+    </article>)}
+  </div>
+  <p class="empty-state" data-doc-empty hidden>No hay recursos que coincidan con esta combinación. Prueba retirando un filtro.</p>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-document-library]').forEach(library => {
+    const search = library.querySelector<HTMLInputElement>('[data-doc-search]');
+    const selects = [...library.querySelectorAll<HTMLSelectElement>('[data-doc-filter]')];
+    const cards = [...library.querySelectorAll<HTMLElement>('[data-doc-card]')];
+    const count = library.querySelector<HTMLElement>('[data-doc-count]');
+    const empty = library.querySelector<HTMLElement>('[data-doc-empty]');
+    const normalize = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+    const apply = () => {
+      const query = normalize(search?.value || '');
+      let visible = 0;
+      cards.forEach(card => {
+        const matchesQuery = normalize(card.dataset.search || '').includes(query);
+        const matchesFilters = selects.every(select => !select.value || (card.dataset[select.dataset.docFilter || ''] || '').split('|').includes(select.value));
+        card.hidden = !(matchesQuery && matchesFilters);
+        if (!card.hidden) visible += 1;
+      });
+      if (count) count.textContent = `${visible} ${visible === 1 ? 'recurso visible' : 'recursos visibles'}`;
+      if (empty) empty.hidden = visible !== 0;
+    };
+    search?.addEventListener('input', apply);
+    selects.forEach(select => select.addEventListener('change', apply));
+    library.querySelector<HTMLButtonElement>('[data-doc-reset]')?.addEventListener('click', () => { if (search) search.value=''; selects.forEach(select=>select.value=''); apply(); search?.focus(); });
+  });
+</script>
+
+<style>
+  .library-controls{display:grid;grid-template-columns:2fr repeat(5,minmax(140px,1fr));gap:.75rem;align-items:end}.library-controls label{display:grid;gap:.35rem;font-weight:750;font-size:.86rem}.library-controls input,.library-controls select{width:100%;min-width:0;padding:.7rem;border:1px solid var(--line);background:white;font:inherit}.library-summary{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:1rem 0}.document-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.document-card{display:flex;flex-direction:column;scroll-margin-top:100px}.document-card[hidden]{display:none}.document-card h3{font-size:1.55rem}.document-meta,.document-links{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}.document-links{margin-top:auto;padding-top:1rem}.document-links a:not(.button){font-size:.85rem}.document-card blockquote{margin:.8rem 0;padding-left:1rem;border-left:3px solid var(--ochre);font-size:.9rem}.map-metadata{display:grid;grid-template-columns:auto 1fr;gap:.25rem .6rem;background:#f4f0e6;padding:.8rem}.map-metadata dd{margin:0}.empty-state{padding:2rem;text-align:center;border:1px dashed var(--line)}@media(max-width:1100px){.library-controls{grid-template-columns:repeat(3,1fr)}.search-label{grid-column:span 3}}@media(max-width:700px){.library-controls,.document-grid{grid-template-columns:1fr}.search-label{grid-column:auto}.library-summary{align-items:flex-start;flex-direction:column}}
+</style>
