@@ -22,6 +22,10 @@ La primera entrega revisa individualmente las 28 fichas y convierte la matriz ed
 
 La segunda entrega convierte los 19 sistemas ambientales territoriales del capítulo V en un explorador SVG estático, accesible y sin dependencias cartográficas cliente. Los puntos son anclas urbanas verificables de orientación, no límites ni centroides. Cada ficha enlaza las páginas autorizadas del libro, conserva las cautelas interpretativas y permite comparación cualitativa. El catálogo distingue las capas oficiales de IGAC, IDEAM, SGC y RUNAP de la clasificación del autor. Metodología, procedencia y QA: [`reports/fase-4-entrega-2-cartografia.md`](reports/fase-4-entrega-2-cartografia.md).
 
+## Fase 4 — biblioteca documental
+
+La tercera entrega incorpora 29 fichas documentales interconectadas: 21 referencias cotejadas en el PDF, mapas históricos, cartografía contemporánea y reproducciones en dominio público. La Biblioteca permite buscar y combinar filtros por naturaleza, relación documental, tema, región y sección, y distingue obras citadas, originales localizados, catálogos y materiales relacionados. Véase [`reports/fase-4-entrega-3-biblioteca.md`](reports/fase-4-entrega-3-biblioteca.md).
+
 ## Desarrollo
 
 ```bash
@@ -48,7 +52,7 @@ El workflow detecta el nombre del repositorio y configura automáticamente el `b
 
 ## Investigación y trazabilidad
 
-Los tipos están en `src/data/types.ts`; el corpus editorial en `src/data/book.ts` y `src/data/learning.ts`; la auditoría web en `src/data/linkAudit.ts`; la matriz editorial en `src/data/editorialAudit.ts`; y las fichas cartográficas en `src/data/territorialSystems.ts`. Los informes legibles están en `reports/`. Cada afirmación enlaza capítulo, página, estado, evaluación, confianza, fuentes y fecha de revisión.
+Los tipos están en `src/data/types.ts`; el corpus editorial en `src/data/book.ts` y `src/data/learning.ts`; la auditoría web en `src/data/linkAudit.ts`; la matriz editorial en `src/data/editorialAudit.ts`; las fichas cartográficas en `src/data/territorialSystems.ts`; y el corpus bibliográfico en `src/data/documentLibrary.ts`. Los informes legibles están en `reports/`. Cada afirmación enlaza capítulo, página, estado, evaluación, confianza, fuentes y fecha de revisión.
 
 Las URL del libro fueron extraídas del PDF local. Un 403, 429, 503 o timeout se registra como bloqueado/no comprobable, nunca automáticamente como roto. Las imágenes se registran en `src/data/media.ts` con autor, fuente y licencia.
 
