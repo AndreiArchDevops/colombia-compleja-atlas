@@ -26,6 +26,10 @@ La segunda entrega convierte los 19 sistemas ambientales territoriales del capí
 
 La tercera entrega incorpora 29 fichas documentales interconectadas: 21 referencias cotejadas en el PDF, mapas históricos, cartografía contemporánea y reproducciones en dominio público. La Biblioteca permite buscar y combinar filtros por naturaleza, relación documental, tema, región y sección, y distingue obras citadas, originales localizados, catálogos y materiales relacionados. Véase [`reports/fase-4-entrega-3-biblioteca.md`](reports/fase-4-entrega-3-biblioteca.md).
 
+## Fase 4 — calidad integral
+
+La cuarta entrega añade QA reproducible en Chromium para las 22 rutas, flujos de lectura y atlas, junto con axe-core para reglas WCAG automatizables. Corrige progreso accesible y en vivo, menú móvil con Escape, semántica del SVG territorial, foco visible, contraste editorial, exportación de notas y degradación segura de IIIF. Resultados, matriz y límites: [`reports/fase-4-entrega-4-calidad.md`](reports/fase-4-entrega-4-calidad.md).
+
 ## Desarrollo
 
 ```bash
@@ -38,9 +42,10 @@ Validación y compilación:
 ```bash
 npm run build
 npm run check:links
+npm run qa:browser
 ```
 
-La compilación ejecuta el validador de referencias, `astro check` y el build estático. Para reproducir exactamente el basepath de GitHub Pages:
+La compilación ejecuta el validador de referencias, `astro check` y el build estático. `qa:browser` requiere Chromium en `/usr/bin/chromium`, recorre todas las rutas y escribe `reports/qa-browser.json`. Para reproducir exactamente el basepath de GitHub Pages:
 
 ```bash
 GITHUB_ACTIONS=true GITHUB_REPOSITORY=AndreiArchDevops/colombia-compleja-atlas npm run build

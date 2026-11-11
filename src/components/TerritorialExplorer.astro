@@ -23,7 +23,7 @@ const pdfPage = (pages: string) => Number(pages.split('–')[0]) + 1;
   </div>
   <div class="explorer-layout">
     <div class="map-panel">
-      <svg class="territorial-map" viewBox="0 0 590 555" role="img" aria-labelledby="territorial-map-title territorial-map-desc">
+      <svg class="territorial-map" viewBox="0 0 590 555" role="group" aria-labelledby="territorial-map-title territorial-map-desc">
         <title id="territorial-map-title">Puntos de orientación para los 19 sistemas ambientales territoriales</title>
         <desc id="territorial-map-desc">Contorno generalizado de Colombia con diecinueve puntos urbanos de referencia. Los puntos no representan fronteras, áreas ni centroides de los sistemas.</desc>
         <path d={path} class="country-outline" />
