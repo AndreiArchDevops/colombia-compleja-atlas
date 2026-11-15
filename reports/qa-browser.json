@@ -1,0 +1,622 @@
+{
+  "generated": "2026-11-11T15:33:02.933Z",
+  "routes": [
+    {
+      "route": "/",
+      "url": "http://127.0.0.1:48731/colombia-compleja-atlas/",
+      "title": "Colombia compleja",
+      "h1": 1,
+      "main": true,
+      "overflow": 0,
+      "brokenImages": [],
+      "pdfLinks": [
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf"
+      ],
+      "pass": true
+    },
+    {
+      "route": "/libro/",
+      "url": "http://127.0.0.1:48731/colombia-compleja-atlas/libro/",
+      "title": "El libro · Colombia compleja",
+      "h1": 1,
+      "main": true,
+      "overflow": 0,
+      "brokenImages": [],
+      "pdfLinks": [
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf"
+      ],
+      "pass": true
+    },
+    {
+      "route": "/capitulos/c1/",
+      "url": "http://127.0.0.1:48731/colombia-compleja-atlas/capitulos/c1/",
+      "title": "El país imaginado · Colombia compleja",
+      "h1": 1,
+      "main": true,
+      "overflow": 0,
+      "brokenImages": [],
+      "pdfLinks": [
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=19",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=22",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=5",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=28",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=35",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf"
+      ],
+      "pass": true
+    },
+    {
+      "route": "/capitulos/c2/",
+      "url": "http://127.0.0.1:48731/colombia-compleja-atlas/capitulos/c2/",
+      "title": "La gente · Colombia compleja",
+      "h1": 1,
+      "main": true,
+      "overflow": 0,
+      "brokenImages": [],
+      "pdfLinks": [
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=40",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=66",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=41",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://www.dane.gov.co/files/censo2005/etnias/colombia_nacion.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=46",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf"
+      ],
+      "pass": true
+    },
+    {
+      "route": "/capitulos/c3/",
+      "url": "http://127.0.0.1:48731/colombia-compleja-atlas/capitulos/c3/",
+      "title": "La estructura física · Colombia compleja",
+      "h1": 1,
+      "main": true,
+      "overflow": 0,
+      "brokenImages": [],
+      "pdfLinks": [
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=84",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=70",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=84",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://www.ideam.gov.co/sites/default/files/prensa/publicaciones/capitulo_8_estado_y_dinamica_del_agua_en_areas_hidrograficas.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=90",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://reporte.humboldt.org.co/assets/docs/2015/1/103/biodiversidad-2015-103-ficha.pdf",
+        "https://proyectos.humboldt.org.co/evaluacion-nacional/docs/RTD.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=92",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=92",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf"
+      ],
+      "pass": true
+    },
+    {
+      "route": "/capitulos/c4/",
+      "url": "http://127.0.0.1:48731/colombia-compleja-atlas/capitulos/c4/",
+      "title": "Las interacciones principales · Colombia compleja",
+      "h1": 1,
+      "main": true,
+      "overflow": 0,
+      "brokenImages": [],
+      "pdfLinks": [
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=105",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=102",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://www2.sgc.gov.co/Publicaciones/Cientificas/NoSeriadas/Documents/recursos-minerales-de-colombia-vol-2.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=105",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://www2.sgc.gov.co/Publicaciones/Cientificas/NoSeriadas/Documents/recursos-minerales-de-colombia-vol-2.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=114",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=115",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf"
+      ],
+      "pass": true
+    },
+    {
+      "route": "/capitulos/c5/",
+      "url": "http://127.0.0.1:48731/colombia-compleja-atlas/capitulos/c5/",
+      "title": "Los sistemas ambientales territoriales · Colombia compleja",
+      "h1": 1,
+      "main": true,
+      "overflow": 0,
+      "brokenImages": [],
+      "pdfLinks": [
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=151",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=133",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=136",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=144",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=148",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=166",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf"
+      ],
+      "pass": true
+    },
+    {
+      "route": "/capitulos/c6/",
+      "url": "http://127.0.0.1:48731/colombia-compleja-atlas/capitulos/c6/",
+      "title": "Colombia: un país diferente · Colombia compleja",
+      "h1": 1,
+      "main": true,
+      "overflow": 0,
+      "brokenImages": [],
+      "pdfLinks": [
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=204",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=214",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://proyectos.humboldt.org.co/evaluacion-nacional/docs/RTD.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=204",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://reporte.humboldt.org.co/assets/docs/2020/Biodiversidad-2020-en-cifras.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf"
+      ],
+      "pass": true
+    },
+    {
+      "route": "/capitulos/c7/",
+      "url": "http://127.0.0.1:48731/colombia-compleja-atlas/capitulos/c7/",
+      "title": "Modelos mentales y estrategias para enfrentarse a la complejidad · Colombia compleja",
+      "h1": 1,
+      "main": true,
+      "overflow": 0,
+      "brokenImages": [],
+      "pdfLinks": [
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=218",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=218",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=224",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=216",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf"
+      ],
+      "pass": true
+    },
+    {
+      "route": "/capitulos/c8/",
+      "url": "http://127.0.0.1:48731/colombia-compleja-atlas/capitulos/c8/",
+      "title": "Construir espacios para la felicidad: los terruños · Colombia compleja",
+      "h1": 1,
+      "main": true,
+      "overflow": 0,
+      "brokenImages": [],
+      "pdfLinks": [
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=234",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=234",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=238",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf"
+      ],
+      "pass": true
+    },
+    {
+      "route": "/apendices/a1/",
+      "url": "http://127.0.0.1:48731/colombia-compleja-atlas/apendices/a1/",
+      "title": "Complejidad y simplicidad en los ecosistemas y las sociedades · Colombia compleja",
+      "h1": 1,
+      "main": true,
+      "overflow": 0,
+      "brokenImages": [],
+      "pdfLinks": [
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf"
+      ],
+      "pass": true
+    },
+    {
+      "route": "/apendices/a2/",
+      "url": "http://127.0.0.1:48731/colombia-compleja-atlas/apendices/a2/",
+      "title": "Para una educación ambiental compleja · Colombia compleja",
+      "h1": 1,
+      "main": true,
+      "overflow": 0,
+      "brokenImages": [],
+      "pdfLinks": [
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf"
+      ],
+      "pass": true
+    },
+    {
+      "route": "/atlas/",
+      "url": "http://127.0.0.1:48731/colombia-compleja-atlas/atlas/",
+      "title": "Atlas y visualizaciones · Colombia compleja",
+      "h1": 1,
+      "main": true,
+      "overflow": 0,
+      "brokenImages": [],
+      "pdfLinks": [
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=129",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=136",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=140",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=144",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=148",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=150",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=154",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=158",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=162",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=166",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=170",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=174",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=178",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=182",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=186",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=190",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=194",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=198",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf#page=200",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf"
+      ],
+      "pass": true
+    },
+    {
+      "route": "/biblioteca/",
+      "url": "http://127.0.0.1:48731/colombia-compleja-atlas/biblioteca/",
+      "title": "Biblioteca documental · Colombia compleja",
+      "h1": 1,
+      "main": true,
+      "overflow": 0,
+      "brokenImages": [],
+      "pdfLinks": [
+        "http://www.banrepcultural.org/sites/default/files/libros/brblaa619043.pdf",
+        "http://library.fes.de/pdf-files/bueros/kolumbien/07217.pdf",
+        "http://www.fescol.org.co/images/stories/Libros/gobernabilidad_instituciones_y_medioambiente.pdf",
+        "https://foronacionalambiental.org.co/wp-content/uploads/2023/03/Libro-Gobernabilidad-instituciones-y-medio-ambiente-en-Colombia.pdf",
+        "https://ia700308.us.archive.org/32/items/lacrnicadelper00ciez/lacrnicadelper00ciez.pdf",
+        "http://cdigital.dgb.uanl.mx/la/1080019458_C/1080019458_T1/1080019458_09.pdf",
+        "http://www.banrepcultural.org/sites/default/files/libros/brblaa824691.pdf",
+        "https://www.banrepcultural.org/sites/default/files/libros/brblaa824691.pdf",
+        "http://www.santafe.edu/media/workingpapers/11-09-046.pdf",
+        "http://escuelapnud.org/biblioteca/documentos/abiertos/05_indh2011co.pdf",
+        "http://www.banrepcultural.org/sites/default/files/libros/brblaa619043.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf"
+      ],
+      "pass": true
+    },
+    {
+      "route": "/contraste/",
+      "url": "http://127.0.0.1:48731/colombia-compleja-atlas/contraste/",
+      "title": "Historia contrastada · Colombia compleja",
+      "h1": 1,
+      "main": true,
+      "overflow": 0,
+      "brokenImages": [],
+      "pdfLinks": [
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://www.dane.gov.co/files/censo2005/etnias/colombia_nacion.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://www.ideam.gov.co/sites/default/files/prensa/publicaciones/capitulo_8_estado_y_dinamica_del_agua_en_areas_hidrograficas.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://reporte.humboldt.org.co/assets/docs/2015/1/103/biodiversidad-2015-103-ficha.pdf",
+        "https://proyectos.humboldt.org.co/evaluacion-nacional/docs/RTD.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://www2.sgc.gov.co/Publicaciones/Cientificas/NoSeriadas/Documents/recursos-minerales-de-colombia-vol-2.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://www2.sgc.gov.co/Publicaciones/Cientificas/NoSeriadas/Documents/recursos-minerales-de-colombia-vol-2.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://proyectos.humboldt.org.co/evaluacion-nacional/docs/RTD.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://reporte.humboldt.org.co/assets/docs/2020/Biodiversidad-2020-en-cifras.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf"
+      ],
+      "pass": true
+    },
+    {
+      "route": "/auditoria/",
+      "url": "http://127.0.0.1:48731/colombia-compleja-atlas/auditoria/",
+      "title": "Auditoría académica · Colombia compleja",
+      "h1": 1,
+      "main": true,
+      "overflow": 0,
+      "brokenImages": [],
+      "pdfLinks": [
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://www.dane.gov.co/files/censo2005/etnias/colombia_nacion.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://www.ideam.gov.co/sites/default/files/prensa/publicaciones/capitulo_8_estado_y_dinamica_del_agua_en_areas_hidrograficas.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://reporte.humboldt.org.co/assets/docs/2015/1/103/biodiversidad-2015-103-ficha.pdf",
+        "https://proyectos.humboldt.org.co/evaluacion-nacional/docs/RTD.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://www2.sgc.gov.co/Publicaciones/Cientificas/NoSeriadas/Documents/recursos-minerales-de-colombia-vol-2.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://www2.sgc.gov.co/Publicaciones/Cientificas/NoSeriadas/Documents/recursos-minerales-de-colombia-vol-2.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://proyectos.humboldt.org.co/evaluacion-nacional/docs/RTD.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://reporte.humboldt.org.co/assets/docs/2020/Biodiversidad-2020-en-cifras.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf"
+      ],
+      "pass": true
+    },
+    {
+      "route": "/rutas/",
+      "url": "http://127.0.0.1:48731/colombia-compleja-atlas/rutas/",
+      "title": "Rutas de estudio · Colombia compleja",
+      "h1": 1,
+      "main": true,
+      "overflow": 0,
+      "brokenImages": [],
+      "pdfLinks": [
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf"
+      ],
+      "pass": true
+    },
+    {
+      "route": "/autor/",
+      "url": "http://127.0.0.1:48731/colombia-compleja-atlas/autor/",
+      "title": "Julio Carrizosa Umaña · Colombia compleja",
+      "h1": 1,
+      "main": true,
+      "overflow": 0,
+      "brokenImages": [],
+      "pdfLinks": [
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf"
+      ],
+      "pass": true
+    },
+    {
+      "route": "/conceptos/",
+      "url": "http://127.0.0.1:48731/colombia-compleja-atlas/conceptos/",
+      "title": "Conceptos · Colombia compleja",
+      "h1": 1,
+      "main": true,
+      "overflow": 0,
+      "brokenImages": [],
+      "pdfLinks": [
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf"
+      ],
+      "pass": true
+    },
+    {
+      "route": "/cronologia/",
+      "url": "http://127.0.0.1:48731/colombia-compleja-atlas/cronologia/",
+      "title": "Cronología · Colombia compleja",
+      "h1": 1,
+      "main": true,
+      "overflow": 0,
+      "brokenImages": [],
+      "pdfLinks": [
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf",
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf"
+      ],
+      "pass": true
+    },
+    {
+      "route": "/laboratorio/",
+      "url": "http://127.0.0.1:48731/colombia-compleja-atlas/laboratorio/",
+      "title": "Laboratorio de aprendizaje · Colombia compleja",
+      "h1": 1,
+      "main": true,
+      "overflow": 0,
+      "brokenImages": [],
+      "pdfLinks": [
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf"
+      ],
+      "pass": true
+    },
+    {
+      "route": "/metodologia/",
+      "url": "http://127.0.0.1:48731/colombia-compleja-atlas/metodologia/",
+      "title": "Metodología · Colombia compleja",
+      "h1": 1,
+      "main": true,
+      "overflow": 0,
+      "brokenImages": [],
+      "pdfLinks": [
+        "https://sogeocol.edu.co/Catalogo/Colombia-compleja.pdf"
+      ],
+      "pass": true
+    }
+  ],
+  "interactions": {
+    "reader": {
+      "note": "Nota de QA",
+      "bookmark": "true",
+      "complete": "true",
+      "progress": "100",
+      "globalProgress": "12.5%",
+      "download": "colombia-compleja-c1.md",
+      "feedback": "Correcto. Colombia ha sido imaginada mediante modelos religiosos, imperiales, ilustrados, liberales, desarrollistas y revolucionarios. Esos modelos importados se cruzan con experiencias indígenas, afrodescendientes y mestizas ligadas al territorio. El capítulo muestra que imaginar no es un acto inocente: orienta instituciones, deseos y violencia."
+    },
+    "persistence": {
+      "note": "Nota de QA",
+      "bookmark": "true",
+      "complete": true
+    },
+    "library": {
+      "empty": true,
+      "visible": 29,
+      "count": "29 recursos visibles"
+    },
+    "iiif": [
+      {
+        "url": "https://babel.banrepcultural.org/digital/iiif/p17054coll13/106/full/900,/0/default.jpg",
+        "loaded": true,
+        "fallback": false
+      },
+      {
+        "url": "https://babel.banrepcultural.org/digital/iiif/p17054coll13/41/full/900,/0/default.jpg",
+        "loaded": true,
+        "fallback": false
+      }
+    ],
+    "libraryScreenshot": "/tmp/colombia-compleja-biblioteca-desktop.png",
+    "atlas": {
+      "selected": "true",
+      "detail": true,
+      "comparison": true,
+      "markers": true
+    },
+    "atlasScreenshot": "/tmp/colombia-compleja-atlas-desktop.png",
+    "mobileMenu": {
+      "opened": "true",
+      "closed": "false",
+      "overflow": 0
+    },
+    "mobileScreenshot": "/tmp/colombia-compleja-inicio-mobile.png"
+  },
+  "accessibility": [
+    {
+      "route": "/",
+      "violations": []
+    },
+    {
+      "route": "/libro/",
+      "violations": []
+    },
+    {
+      "route": "/capitulos/c1/",
+      "violations": []
+    },
+    {
+      "route": "/capitulos/c2/",
+      "violations": []
+    },
+    {
+      "route": "/capitulos/c3/",
+      "violations": []
+    },
+    {
+      "route": "/capitulos/c4/",
+      "violations": []
+    },
+    {
+      "route": "/capitulos/c5/",
+      "violations": []
+    },
+    {
+      "route": "/capitulos/c6/",
+      "violations": []
+    },
+    {
+      "route": "/capitulos/c7/",
+      "violations": []
+    },
+    {
+      "route": "/capitulos/c8/",
+      "violations": []
+    },
+    {
+      "route": "/apendices/a1/",
+      "violations": []
+    },
+    {
+      "route": "/apendices/a2/",
+      "violations": []
+    },
+    {
+      "route": "/atlas/",
+      "violations": []
+    },
+    {
+      "route": "/biblioteca/",
+      "violations": []
+    },
+    {
+      "route": "/contraste/",
+      "violations": []
+    },
+    {
+      "route": "/auditoria/",
+      "violations": []
+    },
+    {
+      "route": "/rutas/",
+      "violations": []
+    },
+    {
+      "route": "/autor/",
+      "violations": []
+    },
+    {
+      "route": "/conceptos/",
+      "violations": []
+    },
+    {
+      "route": "/cronologia/",
+      "violations": []
+    },
+    {
+      "route": "/laboratorio/",
+      "violations": []
+    },
+    {
+      "route": "/metodologia/",
+      "violations": []
+    }
+  ],
+  "performance": {
+    "domContentLoaded": 23,
+    "load": 25,
+    "transferBytes": 10777,
+    "resourceCount": 2,
+    "jsBytes": 0,
+    "cssBytes": 10188
+  },
+  "limitations": [
+    "La prueba automatizada no sustituye una evaluación con lector de pantalla humano.",
+    "Los tiempos proceden de una ejecución local y no representan Core Web Vitals de usuarios reales."
+  ]
+}

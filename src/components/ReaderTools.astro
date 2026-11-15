@@ -4,11 +4,11 @@ const { id } = Astro.props;
 <aside class="card reader-tools" data-reader-id={id}>
   <h3>Tu lectura</h3>
   <label><input type="checkbox" data-complete/> Marcar como leído</label>
-  <div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+  <div class="progress-track" role="progressbar" aria-label="Progreso de esta lectura" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-fill"></div></div>
   <button class="depth-button" type="button" data-bookmark aria-pressed="false">☆ Guardar sección</button>
   <label for={`note-${id}`}><strong>Nota personal</strong></label>
   <textarea class="search" rows="5" id={`note-${id}`} data-note placeholder="Se guarda solo en este dispositivo"></textarea>
-  <div class="actions"><button class="depth-button" type="button" data-export>Exportar nota</button><span class="pill" data-save-state>Sin notas</span></div>
+  <div class="actions"><button class="depth-button" type="button" data-export>Exportar nota</button><span class="pill" data-save-state aria-live="polite">Sin notas</span></div>
 </aside>
 <script>
 document.querySelectorAll<HTMLElement>('.reader-tools').forEach(tool=>{
@@ -23,11 +23,12 @@ document.querySelectorAll<HTMLElement>('.reader-tools').forEach(tool=>{
   bookmark.textContent=bookmarked?'★ Guardado':'☆ Guardar sección';
   bookmark.setAttribute('aria-pressed',String(bookmarked));
   state.textContent=note.value?'Nota guardada':'Sin notas';
-  const paint=()=>{(tool.querySelector('.progress-fill') as HTMLElement).style.width=complete.checked?'100%':'0';};
+  const track=tool.querySelector<HTMLElement>('[role="progressbar"]')!;
+  const paint=()=>{const value=complete.checked?'100':'0';(tool.querySelector('.progress-fill') as HTMLElement).style.width=`${value}%`;track.setAttribute('aria-valuenow',value);};
   paint();
-  complete.addEventListener('change',()=>{localStorage.setItem(`cc-complete-${id}`,String(complete.checked));paint()});
+  complete.addEventListener('change',()=>{localStorage.setItem(`cc-complete-${id}`,String(complete.checked));paint();document.dispatchEvent(new CustomEvent('cc-progress-change'))});
   bookmark.addEventListener('click',()=>{const on=localStorage.getItem(`cc-bookmark-${id}`)!=='true';localStorage.setItem(`cc-bookmark-${id}`,String(on));bookmark.textContent=on?'★ Guardado':'☆ Guardar sección';bookmark.setAttribute('aria-pressed',String(on))});
   note.addEventListener('input',()=>{localStorage.setItem(`cc-note-${id}`,note.value);state.textContent=note.value?'Guardado localmente':'Sin notas'});
-  tool.querySelector('[data-export]')?.addEventListener('click',()=>{const blob=new Blob([`# Colombia compleja — ${id}\n\n${note.value||'Sin notas.'}\n`],{type:'text/markdown'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`colombia-compleja-${id}.md`;a.click();URL.revokeObjectURL(a.href)});
+  tool.querySelector('[data-export]')?.addEventListener('click',()=>{const blob=new Blob([`# Colombia compleja — ${id}\n\n${note.value||'Sin notas.'}\n`],{type:'text/markdown'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`colombia-compleja-${id}.md`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)});
 });
 </script>

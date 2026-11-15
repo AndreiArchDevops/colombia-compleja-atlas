@@ -1,0 +1,20 @@
+/* Correcciones transversales de la auditoría WCAG 2.2 AA. */
+:root { --ochre: #a6531f; }
+
+select:focus-visible,
+summary:focus-visible,
+.system-marker:focus-visible circle,
+.system-detail:focus {
+  outline: 3px solid var(--ochre);
+  outline-offset: 3px;
+}
+
+.remote-image-fallback {
+  display: grid;
+  min-height: 12rem;
+  place-content: center;
+  padding: 1rem;
+  text-align: center;
+  background: #f4f0e6;
+  border: 1px dashed var(--line);
+}
